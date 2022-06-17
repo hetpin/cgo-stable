@@ -1,0 +1,34 @@
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -fPIC -c src/mt_node_test_1.c -o src/mt_node_test_1.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -fPIC -c src/mt_node_test_2.c -o src/mt_node_test_2.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -fPIC -c src/mt_node_test_3.c -o src/mt_node_test_3.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -fPIC -c src/mt_node_test_4.c -o src/mt_node_test_4.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -fPIC -c src/mt_node_test_5.c -o src/mt_node_test_5.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -shared src/background.o src/filter.o src/mt_heap.o src/mt_stack.o src/maxtree.o src/mt_objects.o src/mt_node_test_1.o src/mt_node_test_2.o src/mt_node_test_3.o src/mt_node_test_4.o src/mt_node_test_5.o \
+-o libmto.so -lgsl -lblas -lm
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -c mto.c -o mto.o
+mto.c: In function ‘main’:
+mto.c:130:14: warning: unused variable ‘height_crop’ [-Wunused-variable]
+   SHORT_TYPE height_crop;
+              ^
+mto.c:129:14: warning: unused variable ‘width_crop’ [-Wunused-variable]
+   SHORT_TYPE width_crop;
+              ^
+mto.c:128:15: warning: unused variable ‘data_crop’ [-Wunused-variable]
+   PIXEL_TYPE *data_crop;
+               ^
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -c other/lodepng.c -o other/lodepng.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -c show_objects.c -o show_objects.o
+
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -c fits_read.c -o fits_read.o
+
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -Wl,-rpath=/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul \
+mto.o other/lodepng.o show_objects.o fits_read.o -o mto -lgsl -lblas -lm -lmto -lcfitsio  
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -c false_positives.c -o false_positives.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -Wl,-rpath=/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul \
+false_positives.o -o false_positives -lgsl -lblas -lm -lmto -lcfitsio 
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -c se_segmentation_to_png.c -o se_segmentation_to_png.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -Wl,-rpath=/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul \
+se_segmentation_to_png.o fits_read.o other/lodepng.o show_objects.o -o se_segmentation_to_png -lgsl -lblas -lm -lmto -lcfitsio 
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -c fits_to_png.c -o fits_to_png.o
+gcc -g -O2 -march=native -Wall -fopenmp -I./other -I./include -I$HOME/lib -I./cfitsio/include -L$HOME/lib -L/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul -fPIC -Wl,-rpath=/home/nguyentx/Sundial/UgoMoschini/Mto/crossmatch/mtopaul \
+fits_to_png.o fits_read.o other/lodepng.o show_objects.o -o fits_to_png -lgsl -lblas -lm -lmto -lcfitsio 	
