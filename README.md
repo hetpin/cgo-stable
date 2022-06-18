@@ -1,5 +1,5 @@
 # CGO
-CGO is a novel multiband object detection method relying on the component-graphs and statistical hypothesis tests. 
+This repository implements CGO - a novel multiband object detection method relying on the component-graphs and statistical hypothesis tests. The method is described in [CGO Paper - ICIP 2020](https://hal.archives-ouvertes.fr/hal-03132048/) and [CGO Article - IEEE Access 2021](https://www.archives-ouvertes.fr/hal-03429058/).
 
 # Requirements
 - cfitsio
@@ -62,7 +62,6 @@ Because component graph construction doesn't scale well.
 
 Please cite the related publications if you use the code:
 
-## CGO Article
 ```
 @article{nguyen2021object,
   title={Object Detection with Component-Graphs in Multi-band Images: Application to Source Detection in Astronomical Images},
@@ -73,10 +72,7 @@ Please cite the related publications if you use the code:
   year={2021},
   publisher={IEEE}
 }
-```
 
-### CGO Paper
-```
 @inproceedings{nguyen2020cgo,
   title={Cgo: Multiband astronomical source detection with component-graphs},
   author={Nguyen, Thanh Xuan and Chierchia, Giovanni and Najman, Laurent and Venhola, Aku and Haigh, Caroline and Peletier, Reynier and Wilkinson, Michael HF and Talbot, Hugues and Perret, Benjamin},
